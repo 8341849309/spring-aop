@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="csr" class="com.nt.service.CarShowRoom"/>
+	
+	<bean id="tdaAdvice" class="com.nt.advice.TestDriveAuditingAdvice"/>
+
+	<aop:config>
+		<aop:pointcut expression="execution (java.lang.String com.nt.service.CarShowRoom.sellCar(..))" id="ptc"/>
+
+		<aop:aspect ref="tdaAdvice">
+			<aop:before method="testDriving" pointcut-ref="ptc"/>
+		</aop:aspect>
+
+	</aop:config>
+
+</beans>
