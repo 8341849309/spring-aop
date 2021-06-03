@@ -1,0 +1,37 @@
+plugins {
+	id 'org.springframework.boot' version '2.5.1-SNAPSHOT'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+group = 'nt'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/aspectj/aspectjrt
+	implementation group: 'aspectj', name: 'aspectjrt', version: '1.5.4'
+	// https://mvnrepository.com/artifact/org.aspectj/aspectjweaver
+	implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.6'
+	
+}
+
+test {
+	useJUnitPlatform()
+}
